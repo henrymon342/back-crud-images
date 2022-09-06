@@ -41,13 +41,23 @@ app.get('/api/users', (req, res) => {
 });
 
 
-app.post('/api/create', (req, res) => {
+app.post('/api/create', multipartMiddleware, async (req, res) => {
+  const idAsosiado = req.body['idAsociado'];
+  const impath = req.files.uploads[0]['path'];
+  console.log( idAsosiado );
+  console.log( impath );
+  console.log(req.files.uploads[0]);
 
-  const dataReq = req;
-  console.log(dataReq)
+  const result = await cloudinary.uploader.upload( impath )
+
+  const newImage = { 
+    idAsosiado,
+    imagePath: result.secure_url,
+    cloudinary_id: result.public_id
+   };
   res.send({
-    message: 'data recived',
-    data: dataReq
+    'message': 'File uploaded successfully',
+    newImage
   });
 });
 
