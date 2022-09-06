@@ -48,7 +48,7 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/create',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
-  const impath = req.files['path'];
+  const impath = req.file['path'];
   console.log('idAsosiado', idAsosiado );
   console.log('req.files', req.file );
   console.log( 'path', impath );
