@@ -50,13 +50,13 @@ app.post('/api/create', async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
   // const impath = req.files.uploads[0]['path'];
   console.log('req', req );
-  console.log('req.body', req.body );
-  console.log('req.files', req.files.uploads[0] );
+  // console.log('req.body', req.body );
+  // console.log('req.files', req.files.uploads[0] );
   // console.log( impath );
   // console.log(req.files.uploads[0]);
 
   res.send({
-    idAsosiado
+    message: 'llego el mensage'
   })
   // const result = await cloudinary.uploader.upload( impath )
 
