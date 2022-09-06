@@ -42,9 +42,12 @@ app.get('/api/users', (req, res) => {
 
 
 app.post('/api/create', (req, res) => {
+
+  const dataReq = req;
+  console.log(dataReq)
   res.send({
     message: 'data recived',
-    data: req.body
+    data: dataReq
   });
 });
 
