@@ -1,7 +1,7 @@
 const  express  =  require('express')
 const multer  = require('./libs/multer')
 const  multipart  =  require('connect-multiparty');
-const  multipartMiddleware  =  multipart({ uploadDir:  '/tmp/task/uploads' });
+const  multipartMiddleware  =  multipart({ uploadDir:  '/uploads' });
 const bodyParser = require("body-parser");
 const cors = require('cors')
 const cloudinary = require('./utils/cloudinary');
@@ -48,10 +48,10 @@ app.get('/api/users', (req, res) => {
 
 app.post('/api/create',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
-  // const impath = req.files.uploads[0]['path'];
-  console.log('req.body---', req );
-  // console.log('req.files', req.file );
-  // console.log( impath );
+  const impath = req.files['path'];
+  console.log('idAsosiado', idAsosiado );
+  console.log('req.files', req.file );
+  console.log( 'path', impath );
   // console.log(req.files.uploads[0]);
 
   res.send({
