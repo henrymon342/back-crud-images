@@ -18,11 +18,13 @@ app.use(bodyParser.urlencoded({
 
 
 
-// app.get('/api/upload', (req, res) => {
-//     res.json({
-//         'message': 'hello'
-//     });
-// });
+app.get('/', (req, res) => {
+    res.json({
+        'message': 'hello'
+    });
+});
+
+
 
 
 app.post('/api/upload', multipartMiddleware, async (req, res) => {
