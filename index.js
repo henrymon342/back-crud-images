@@ -1,7 +1,7 @@
 const  express  =  require('express')
 const multer  = require('./libs/multer')
 const  multipart  =  require('connect-multiparty');
-const  multipartMiddleware  =  multipart({ uploadDir:  './uploads' });
+const  multipartMiddleware  =  multipart({ uploadDir:  '/tmp/task/uploads' });
 const bodyParser = require("body-parser");
 const cors = require('cors')
 const cloudinary = require('./utils/cloudinary');
