@@ -3,13 +3,14 @@ const  express  =  require('express')
 const  multipart  =  require('connect-multiparty');
 const  multipartMiddleware  =  multipart({ uploadDir:  './uploads' });
 const bodyParser = require("body-parser");
-
+const cors = require('cors')
 const cloudinary = require('./utils/cloudinary');
 
 
 const  app  =  express()
 const PORT = process.env.PORT || 3000;
 
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
