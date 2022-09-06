@@ -44,7 +44,7 @@ app.get('/api/users', (req, res) => {
 app.post('/api/create', async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
   // const impath = req.files.uploads[0]['path'];
-  console.log( req.body );
+  console.log( req );
   // console.log( impath );
   // console.log(req.files.uploads[0]);
 
