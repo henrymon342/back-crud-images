@@ -1,5 +1,5 @@
 const  express  =  require('express')
-
+const multer  = require('../libs/multer')
 const  multipart  =  require('connect-multiparty');
 const  multipartMiddleware  =  multipart({ uploadDir:  './uploads' });
 const bodyParser = require("body-parser");
