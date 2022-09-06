@@ -11,7 +11,7 @@ const  app  =  express()
 const PORT = process.env.PORT || 3000;
 
 const corsOptions ={
-  origin:'http://localhost:4200', 
+  origin:'https://front-crud-images.vercel.app', 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }
