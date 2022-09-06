@@ -41,24 +41,27 @@ app.get('/api/users', (req, res) => {
 });
 
 
-app.post('/api/create', multipartMiddleware, async (req, res) => {
+app.post('/api/create', async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
-  const impath = req.files.uploads[0]['path'];
+  // const impath = req.files.uploads[0]['path'];
   console.log( idAsosiado );
-  console.log( impath );
-  console.log(req.files.uploads[0]);
+  // console.log( impath );
+  // console.log(req.files.uploads[0]);
 
-  const result = await cloudinary.uploader.upload( impath )
-
-  const newImage = { 
-    idAsosiado,
-    imagePath: result.secure_url,
-    cloudinary_id: result.public_id
-   };
   res.send({
-    'message': 'File uploaded successfully',
-    newImage
-  });
+    idAsosiado
+  })
+  // const result = await cloudinary.uploader.upload( impath )
+
+  // const newImage = { 
+  //   idAsosiado,
+  //   imagePath: result.secure_url,
+  //   cloudinary_id: result.public_id
+  //  };
+  // res.send({
+  //   'message': 'File uploaded successfully',
+  //   newImage
+  // });
 });
 
 
