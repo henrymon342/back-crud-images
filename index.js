@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 
 
 app.get('/', (req, res) => {
-    res.json({
+    res.send({
         'message': 'hello'
     });
 });
