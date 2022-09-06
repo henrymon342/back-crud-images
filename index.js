@@ -8,7 +8,7 @@ const cloudinary = require('./utils/cloudinary');
 
 
 const  app  =  express()
-const  port  =  3000
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -22,6 +22,21 @@ app.get('/', (req, res) => {
     res.send({
         'message': 'hello'
     });
+});
+
+app.get('/api/users', (req, res) => {
+  res.send([
+    {
+      name: "henry",
+      age: "26",
+      dni: '123456'
+    },
+    {
+      name: 'pepito',
+      age: '12',
+      dni: '65421'
+    }
+  ]);
 });
 
 
@@ -47,4 +62,4 @@ app.post('/api/upload', multipartMiddleware, async (req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
