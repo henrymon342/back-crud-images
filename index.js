@@ -40,6 +40,13 @@ app.get('/api/users', (req, res) => {
 });
 
 
+app.post('/api/create', (req, res) => {
+  res.send({
+    message: 'data recived',
+    data: req.body
+  });
+});
+
 
 
 app.post('/api/upload', multipartMiddleware, async (req, res) => {
