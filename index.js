@@ -53,11 +53,12 @@ app.post('/api/create',  multer.single('image'), async (req, res) => {
   console.log('req.files', req.file );
   console.log( 'path', impath );
   // console.log(req.files.uploads[0]);
+  const result = await cloudinary.uploader.upload( impath )
 
   res.send({
-    message: 'llego el mensage'
+    message: 'llego el mensage',
+    result
   })
-  // const result = await cloudinary.uploader.upload( impath )
 
   // const newImage = { 
   //   idAsosiado,
