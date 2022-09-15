@@ -45,6 +45,11 @@ app.get('/api/users', (req, res) => {
   ]);
 });
 
+// ROUTES...
+// ADMINISTRADORES' ROUTES 
+const admiRoutes = require('./routes/administrador.routes');
+app.use("/api/administrador", admiRoutes);
+
 
 app.post('/api/create',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
@@ -73,25 +78,7 @@ app.post('/api/create',  multer.single('image'), async (req, res) => {
 
 
 
-app.post('/api/upload', multipartMiddleware, async (req, res) => {
-  console.log(req.files);
-  console.log(req.files.uploads[0]);
-  const idAsosiado = req.body.idAsosiado;
-  const impath = req.files.uploads[0].path;
-  console.log( impath );
-  const result = await cloudinary.uploader.upload(impath)
 
-  // const newImage = { idAsosiado: idAsosiado, imagePath: impath };
-  const newImage = { idAsosiado: idAsosiado,
-                     imagePath: result.secure_url,
-                     cloudinary_id: result.public_id
-                    };
-
-  res.json({
-      'message': 'File uploaded successfully',
-      newImage
-  });
-});
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
 

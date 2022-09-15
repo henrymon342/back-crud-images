@@ -1,0 +1,28 @@
+{
+  "development": {
+    "username": "henry",
+    "password": "",
+    "database": "iglesianazareno",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "d0xqma16btqr",
+    "password": "pscale_pw_JEQG9rbPuORTEZQjhWDs7ssuxK4izJjcd3Yp8WPIJT8",
+    "database": "iglesianazareno",
+    "host": "bbmmrtv29w4t.us-east-1.psdb.cloud",
+    "dialect": "mysql",
+    "dialectOptions": {
+      "ssl": {
+          "rejectUnauthorized": true      
+      }
+    }
+  }
+}
