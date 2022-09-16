@@ -1,11 +1,10 @@
 const  express  =  require('express')
 const multer  = require('./libs/multer')
 const  multipart  =  require('connect-multiparty');
-const  multipartMiddleware  =  multipart({ uploadDir:  '/uploads' });
 const bodyParser = require("body-parser");
 const cors = require('cors')
 const cloudinary = require('./utils/cloudinary');
-
+const db = require('./models');
 
 const  app  =  express()
 const PORT = process.env.PORT || 3000;
@@ -79,8 +78,12 @@ app.post('/api/create',  multer.single('image'), async (req, res) => {
 
 
 
-
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
+db.sequelize.sync().then(() => {
+  app.listen(PORT, () =>{
+      console.log(`LISTENING AT: http://localhost:${PORT}`);
+  });
+});
+// app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))
 
 
 
