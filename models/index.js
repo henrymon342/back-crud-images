@@ -7,10 +7,12 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 let config = require(__dirname + '/../config/config.json')[env];
 const db = {};
+const mysql2 = require('mysql2');
 
-
-
-config = Object.assign(config, {dialectModule: require('mysql2')});
+const options = {options: {
+  dialectModule: mysql2
+}}
+config = Object.assign(config, options);
 console.log("config", config);
 let sequelize;
 if (config.use_env_variable) {
