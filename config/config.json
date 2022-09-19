@@ -13,11 +13,11 @@
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  "production": {
-    "username": "d0xqma16btqr",
-    "password": "pscale_pw_JEQG9rbPuORTEZQjhWDs7ssuxK4izJjcd3Yp8WPIJT8",
+  "production": {    
+    "username": "oi933llgqegm2w2847s9",
+    "password": "pscale_pw_GrzGFJ7o8t0p2DS3pv4fgDurinBoLrU4UPIfaa25wLp",
     "database": "iglesianazareno",
-    "host": "bbmmrtv29w4t.us-east-1.psdb.cloud",
+    "host": "us-east.connect.psdb.cloud",
     "dialect": "mysql",
     "dialectOptions": {
       "ssl": {

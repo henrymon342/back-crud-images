@@ -13,7 +13,7 @@ const options = {options: {
   dialectModule: mysql2
 }}
 config = Object.assign(config, options);
-console.log("config", config);
+// console.log("config", config);
 let sequelize;
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[config.use_env_variable], config);
