@@ -9,7 +9,7 @@ const  app  =  express()
 const PORT = process.env.PORT || 3000;
 
 const corsOptions ={
-  origin:'https://front-crud-images.vercel.app', 
+  origin:['https://front-crud-images.vercel.app', 'http://localhost:4200'], 
   credentials:true,            //access-control-allow-credentials:true
   optionSuccessStatus:200
 }
