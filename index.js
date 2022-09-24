@@ -48,6 +48,9 @@ app.get('/api/users', (req, res) => {
 const admiRoutes = require('./routes/administrador.routes');
 app.use("/api/administrador", admiRoutes);
 
+// PASTORES' ROUTES 
+const pastorRoutes = require('./routes/pastor.routes');
+app.use("/api/pastores", pastorRoutes);
 
 app.post('/api/create',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
