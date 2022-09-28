@@ -26,7 +26,8 @@ router.post('/new',  multer.single('image'), async (req, res) => {
 
 
 router.get('/find/:id', (req, res) => {
-  res.send(req.params.id)
+  console.log(req.params);
+  res.send(req.params)
   // db.Imagen.findOne({
   //     where: { idAsosiado: req.params.id }
   // })
