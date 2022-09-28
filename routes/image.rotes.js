@@ -11,13 +11,7 @@ router.post('/new',  multer.single('image'), async (req, res) => {
   console.log('idAsosiado', idAsosiado );
   console.log('req.files', req.file );
   console.log( 'path', impath );
-  // console.log(req.files.uploads[0]);
   const result = await cloudinary.uploader.upload( impath )
-
-  // res.send({
-  //   message: 'llego el mensage',
-  //   result
-  // })
 
   const newImage = { 
     idAsosiado,
@@ -32,23 +26,24 @@ router.post('/new',  multer.single('image'), async (req, res) => {
 
 
 router.get('/find/:id', (req, res) => {
-  db.Imagen.findOne({
-      where: { idAsosiado: req.params.id }
-  })
-  .then((ImageFound) => {
-    if (ImageFound ) {
-        res.send(ImageFound)
-      } else {
-        res.send({
-          message: `Cannot found Imagen with id=${id}.`
-        });
-      }
-  })
-  .catch(err => {
-    res.status(500).send({
-      message: "Error getting Image"
-    });
-  });
+  res.send(req.params.id)
+  // db.Imagen.findOne({
+  //     where: { idAsosiado: req.params.id }
+  // })
+  // .then((ImageFound) => {
+  //   if (ImageFound ) {
+  //       res.send(ImageFound)
+  //     } else {
+  //       res.send({
+  //         message: `Cannot found Imagen with id=${id}.`
+  //       });
+  //     }
+  // })
+  // .catch(err => {
+  //   res.status(500).send({
+  //     message: "Error getting Image"
+  //   });
+  // });
 })
 
 
