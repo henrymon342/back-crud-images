@@ -5,7 +5,7 @@ const multer  = require('../libs/multer')
 const path = require('path')
 const fs = require('fs-extra')
 
-app.post('/new',  multer.single('image'), async (req, res) => {
+router.post('/new',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
   const impath = req.file['path'];
   console.log('idAsosiado', idAsosiado );
