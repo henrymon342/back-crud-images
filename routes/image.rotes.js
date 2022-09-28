@@ -27,24 +27,26 @@ router.post('/new',  multer.single('image'), async (req, res) => {
 
 router.get('/find/:id', (req, res) => {
   const {id} = req.params.toString();
-  db.Imagen.findOne({
-      where: { idAsosiado: id }
-  })
-  .then((ImageFound) => {
-    if (ImageFound ) {
-        res.send(ImageFound)
-      } else {
-        res.send({
-          message: `Cannot found Imagen with id=${id}.`
-        });
-      }
-  })
-  .catch(err => {
-    res.status(500).send({
-      message: "Error getting Image"
-    });
-  });
-})
+  
+  res.send(id)
+//   db.Imagen.findOne({
+//       where: { idAsosiado: id }
+//   })
+//   .then((ImageFound) => {
+//     if (ImageFound ) {
+//         res.send(ImageFound)
+//       } else {
+//         res.send({
+//           message: `Cannot found Imagen with id=${id}.`
+//         });
+//       }
+//   })
+//   .catch(err => {
+//     res.status(500).send({
+//       message: "Error getting Image"
+//     });
+//   });
+// })
 
 
 // router.get('/prueba', async (req, res) => {
