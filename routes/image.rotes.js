@@ -5,28 +5,32 @@ const multer  = require('../libs/multer')
 const path = require('path')
 const fs = require('fs-extra')
 
+app.post('/new',  multer.single('image'), async (req, res) => {
+  const idAsosiado = req.body['idAsociado'];
+  const impath = req.file['path'];
+  console.log('idAsosiado', idAsosiado );
+  console.log('req.files', req.file );
+  console.log( 'path', impath );
+  // console.log(req.files.uploads[0]);
+  const result = await cloudinary.uploader.upload( impath )
+
+  // res.send({
+  //   message: 'llego el mensage',
+  //   result
+  // })
+
+  const newImage = { 
+    idAsosiado,
+    imagePath: result.secure_url,
+    cloudinary_id: result.public_id
+   };
+  res.send({
+    'message': 'File uploaded successfully',
+    newImage
+  });
+});
 
 
-router.post('/new', multer.single('image'), async (req, res) => {
-
-  // const impath = req.file.path;
-  // console.log( impath );
-
-  res.send( {message: 'llego la imagen'} )
-  // //CLOUDINARY
-  // const result = await cloudinary.uploader.upload(impath)
-
-  // // const newImage = { idAsosiado: idAsosiado, imagePath: impath };
-  // const newImage = { idAsosiado: idAsosiado,
-  //                    imagePath: result.secure_url,
-  //                    cloudinary_id: result.public_id
-  //                   };
-  //   await db.Imagen.create(
-  //       newImage
-  //   ).then( (newImagen) => {
-  //        res.send(newImagen)
-  //   });
-})
 
 router.get('/prueba', async (req, res) => {
   res.send( {message: 'llego'} )
