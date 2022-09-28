@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const cloudinary = require('../utils/cloudinary');
 const multer  = require('../libs/multer')
-const path = require('path')
-const fs = require('fs-extra')
+const db = require('../models')
+
 
 router.post('/new',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
@@ -26,27 +26,25 @@ router.post('/new',  multer.single('image'), async (req, res) => {
 
 
 router.get('/find/:id', (req, res) => {
-  const {id} = req.params.toString();
-  
-  res.send(id)
-//   db.Imagen.findOne({
-//       where: { idAsosiado: id }
-//   })
-//   .then((ImageFound) => {
-//     if (ImageFound ) {
-//         res.send(ImageFound)
-//       } else {
-//         res.send({
-//           message: `Cannot found Imagen with id=${id}.`
-//         });
-//       }
-//   })
-//   .catch(err => {
-//     res.status(500).send({
-//       message: "Error getting Image"
-//     });
-//   });
-// })
+  const {id} = req.params;  
+  db.Imagen.findOne({
+      where: { idAsosiado: id }
+  })
+  .then((ImageFound) => {
+    if (ImageFound ) {
+        res.send(ImageFound)
+      } else {
+        res.send({
+          message: `Cannot found Imagen with id=${id}.`
+        });
+      }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error getting Image"
+    });
+  });
+})
 
 
 // router.get('/prueba', async (req, res) => {
