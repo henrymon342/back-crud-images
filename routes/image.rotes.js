@@ -18,9 +18,14 @@ router.post('/new',  multer.single('image'), async (req, res) => {
     imagePath: result.secure_url,
     cloudinary_id: result.public_id
    };
-  res.send({
-    'message': 'File uploaded successfully',
+
+   await db.Imagen.create(
     newImage
+  ).then( (newImagen) => {
+    res.send({
+      'message': 'File uploaded successfully',
+      newImagen
+    });
   });
 });
 
