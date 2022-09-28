@@ -47,16 +47,85 @@ router.get('/find/:id', (req, res) => {
 })
 
 
-// router.get('/prueba', async (req, res) => {
-//   res.send( {message: 'llego'} )
-// })
+router.put('/update/:id', multer.single('image'), async (req, res) => {
+  const {id} = req.params; 
+  console.log(id);
+  const impath = req.file['path'];
+  // const newImage = { imagePath: req.file.path };
+  // res.send(req.file)
+
+  await db.Imagen.findOne({
+    where: {idAsosiado: id}
+ }).then(async (result) => {
+
+      // elimina la direccion y la imagen de uploads
+      // fs.unlink(path.resolve(result.dataValues.imagePath))
+      // ELIMINA LA IMAGEN DEL SERVIDOR DE CLOUDINARY
+      await cloudinary.uploader.destroy(result.cloudinary_id)
+      //CLOUDINARY
+      const resultimg = await cloudinary.uploader.upload(impath)
+      const auxImage = { 
+                        idAsosiado: id,
+                        imagePath: resultimg.secure_url, 
+                        cloudinary_id: resultimg.public_id
+       };
+      db.Imagen.update( auxImage,{
+        where: { idAsosiado: id }
+    }).then(num => {
+        if (num == 1) {
+          res.send({
+            message: "Imagen was updated successfully."
+          });
+        } else {
+          res.send({
+            message: `Cannot delete Imagen with id=${id}. Maybe Imagen was not found or req.body is empty!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error deleting Imagen with id=" + id
+        });
+      });
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error getting Image"
+    });
+  });
+  
+})
 
 
-// router.post('/crear', multer.single('image'), async (req, res) => {
-//   res.send( {message: 'llego la imagen'} )
-// })
-
-
+router.delete('/delete/:id', async (req, res) => {
+  const {id} = req.params; 
+  await db.Imagen.findOne({
+    where: {idAsosiado: id}
+ }).then(async (result) => {
+    // BORRA LA IMAGEN DE LA CAPPETA EN LA QUE SE ENCUENTRA
+    // fs.unlink(path.resolve(result.dataValues.imagePath))
+    // ELIMINA LA IMAGEN DEL SERVIDOR DE CLOUDINARY
+    await cloudinary.uploader.destroy(result.cloudinary_id)
+    db.Imagen.destroy({
+        where: { idAsosiado: id }
+    }).then(num => {
+        if (num == 1) {
+          res.send({
+            message: "Imagen was deleted successfully."
+          });
+        } else {
+          res.send({
+            message: `Cannot delete Imagen with id=${id}. Maybe Imagen was not found or req.body is empty!`
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Error deleting Imagen with id=" + id
+        });
+      });
+ });
+})
 
 
 
