@@ -35,7 +35,7 @@ router.get('/find/:id', (req, res) => {
         res.send(ImageFound)
       } else {
         res.send({
-          message: `Cannot found Imagen with id=${id}.`
+          message: `Cannot found Imagen with id=${id}`
         });
       }
   })
@@ -127,6 +127,12 @@ router.delete('/delete/:id', async (req, res) => {
  });
 })
 
+router.get('/all', (req, res) => {
+  db.Imagen.findAll({
+  }).then((allImages) => {
+      res.send(allImages)
+  });
+})
 
 
 module.exports = router;
