@@ -31,15 +31,35 @@ router.post('/new',  multer.single('image'), async (req, res) => {
 });
 
 
-
-router.get('/prueba', async (req, res) => {
-  res.send( {message: 'llego'} )
+router.get('/find/:id', (req, res) => {
+  db.Imagen.findOne({
+      where: { idAsosiado: req.params.id }
+  })
+  .then((ImageFound) => {
+    if (ImageFound ) {
+        res.send(ImageFound)
+      } else {
+        res.send({
+          message: `Cannot found Imagen with id=${id}.`
+        });
+      }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error getting Image"
+    });
+  });
 })
 
 
-router.post('/crear', multer.single('image'), async (req, res) => {
-  res.send( {message: 'llego la imagen'} )
-})
+// router.get('/prueba', async (req, res) => {
+//   res.send( {message: 'llego'} )
+// })
+
+
+// router.post('/crear', multer.single('image'), async (req, res) => {
+//   res.send( {message: 'llego la imagen'} )
+// })
 
 
 
