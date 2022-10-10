@@ -56,6 +56,10 @@ app.use("/api/pastores", pastorRoutes);
 const recordRoutes = require('./routes/record.routes');
 app.use("/api/records", recordRoutes);
 
+// ASIGNATURAS' ROUTES 
+const asignaturaRoutes = require('./routes/asignatura.routes');
+app.use("/api/asignaturas", asignaturaRoutes);
+
 // IMAGES' ROUTES 
 const imageRoutes = require('./routes/image.rotes');
 app.use("/api/image", imageRoutes);
