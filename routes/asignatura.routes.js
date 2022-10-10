@@ -27,47 +27,47 @@ router.get('/find/:id', (req, res) => {
 })
 
 
-router.put('/update/:id', (req, res) => {
+router.put('/update/:id', async (req, res) => {
     const id = req.params.id;
     numerito = req.body.numero
-    db.Asignatura.update( req.body,{
+    await db.Asignatura.update( req.body,{
     where: [{ idFKPastor: id  }, { numero: numerito }]
-    }).then(num => {
+    }).then(async num => {
         if (num == 1) {
-          res.send({
+          await res.send({
             message: "Asignatura was updated successfully."
           });
         } else {
-          res.send({
+          await res.send({
             message: `Cannot update Asignatura with id=${id}. Maybe Asignatura was not found or req.body is empty!`
           });
         }
       })
-      .catch(err => {
-        res.status(500).send({
+      .catch(async err => {
+        await res.status(500).send({
           message: "Error updating Asignatura with id=" + id
         });
       });
 })
 
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
   const {id} = req.params; 
-    db.Asignatura.destroy({
+    await db.Asignatura.destroy({
         where: { idFKPastor: id }
-    }).then(num => {
+    }).then( async num => {
         if (num == 1) {
-          res.send({
+          await res.send({
             message: "Asignatura was deleted successfully."
           });
         } else {
-          res.send({
+          await res.send({
             message: `Cannot delete Asignatura with id=${id}. Maybe Asignatura was not found or req.body is empty!`
           });
         }
       })
-      .catch(err => {
-        res.status(500).send({
+      .catch(async err => {
+        await res.status(500).send({
           message: "Error deleting Asignatura with id=" + id
         });
       });
