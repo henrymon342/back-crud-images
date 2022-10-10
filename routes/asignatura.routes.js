@@ -52,7 +52,7 @@ router.put('/update/:id', (req, res) => {
 
 
 router.delete('/delete/:id', (req, res) => {
-    const id = req.params.id;
+  const {id} = req.params; 
     db.Asignatura.destroy({
         where: { idFKPastor: id }
     }).then(num => {
