@@ -34,17 +34,17 @@ router.put('/update/:id', async (req, res) => {
     where: [{ idFKPastor: id  }, { numero: numerito }]
     }).then(async num => {
         if (num == 1) {
-          await res.send({
+          res.send({
             message: "Asignatura was updated successfully."
           });
         } else {
-          await res.send({
+          res.send({
             message: `Cannot update Asignatura with id=${id}. Maybe Asignatura was not found or req.body is empty!`
           });
         }
       })
       .catch(async err => {
-        await res.status(500).send({
+        res.status(500).send({
           message: "Error updating Asignatura with id=" + id
         });
       });
@@ -54,20 +54,20 @@ router.put('/update/:id', async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
   const {id} = req.params; 
     await db.Asignatura.destroy({
-        where: { idFKPastor: id }
+        where: { id: id }
     }).then( async num => {
         if (num == 1) {
-          await res.send({
+          res.send({
             message: "Asignatura was deleted successfully."
           });
         } else {
-          await res.send({
+          res.send({
             message: `Cannot delete Asignatura with id=${id}. Maybe Asignatura was not found or req.body is empty!`
           });
         }
       })
       .catch(async err => {
-        await res.status(500).send({
+        res.status(500).send({
           message: "Error deleting Asignatura with id=" + id
         });
       });
