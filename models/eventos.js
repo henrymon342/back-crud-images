@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING,
             allowNull: false
         },
-        option_place:{
+        optionplace:{
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING,
             allowNull: false
         },
-        fecha_single:{
+        fechasingle:{
             type: DataTypes.STRING,
             allowNull: true
         },

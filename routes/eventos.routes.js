@@ -5,11 +5,20 @@ const moment = require('moment');
 
 
 router.post('/new', (req, res) => {
-    db.Eventos.create(
-        req.body
-    ).then((newEvento) => {
-        res.send(newEvento)
+  const {ministerio, titulo, modalidad, optionplace, place, tipofecha, fechasingle, fechaini, fechafin, horaini, horafin, descripcion, encargado } = req.body
+    const event = {
+      ministerio, titulo, modalidad, optionplace, place, tipofecha, fechasingle, fechaini, fechafin, horaini, horafin, descripcion, encargado
+    }
+  db.Eventos.create(
+    event
+  ).then((newEvent) => {
+    res.send(newEvent)
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: err.message
     });
+  });
 })
 
 
@@ -33,8 +42,12 @@ router.get('/find/:id', (req, res) => {
 
 
 router.put('/update/:id', (req, res) => {
-    const id = req.params.id;
-    db.Eventos.update( req.body,{
+  const id = req.params.id;
+  const {ministerio, titulo, modalidad, optionplace, place, tipofecha, fechasingle, fechaini, fechafin, horaini, horafin, descripcion, encargado } = req.body
+    const event = {
+      ministerio, titulo, modalidad, optionplace, place, tipofecha, fechasingle, fechaini, fechafin, horaini, horafin, descripcion, encargado
+    }
+    db.Eventos.update( event,{
         where: { id: id }
     }).then(num => {
         if (num == 1) {
