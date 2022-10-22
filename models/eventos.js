@@ -13,17 +13,29 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING,
             allowNull: false
         },
-        lugar:{
+        option_place:{
             type: DataTypes.STRING,
             allowNull: false
         },
-        encargado:{
+        place:{
             type: DataTypes.STRING,
             allowNull: false
         },
-        fecha:{
+        tipofecha:{
             type: DataTypes.STRING,
             allowNull: false
+        },
+        fecha_single:{
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        fechaini:{
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        fechafin:{
+            type: DataTypes.STRING,
+            allowNull: true
         },
         horaini:{
             type: DataTypes.STRING,
@@ -37,31 +49,7 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING,
             allowNull: false
         },
-        // estado:{
-        //     type: DataTypes.STRING,
-        //     allowNull: false
-        // }
-        // costo:{
-        //     type: DataTypes.STRING,
-        //     allowNull: false
-        // }
-        presencial:{
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        virtual:{
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        tipofecha:{
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        fechaini:{
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        fechafin:{
+        encargado:{
             type: DataTypes.STRING,
             allowNull: true
         }

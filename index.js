@@ -64,6 +64,11 @@ app.use("/api/asignaturas", asignaturaRoutes);
 const imageRoutes = require('./routes/image.rotes');
 app.use("/api/image", imageRoutes);
 
+// EVENTOS' ROUTES 
+const eventosRoutes = require('./routes/eventos.rotes');
+app.use("/api/event", eventosRoutes);
+
+
 app.post('/api/create',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
   const impath = req.file['path'];
@@ -77,16 +82,6 @@ app.post('/api/create',  multer.single('image'), async (req, res) => {
     message: 'llego el mensage',
     result
   })
-
-  // const newImage = { 
-  //   idAsosiado,
-  //   imagePath: result.secure_url,
-  //   cloudinary_id: result.public_id
-  //  };
-  // res.send({
-  //   'message': 'File uploaded successfully',
-  //   newImage
-  // });
 });
 
 
