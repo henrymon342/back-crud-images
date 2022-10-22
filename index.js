@@ -61,11 +61,11 @@ const asignaturaRoutes = require('./routes/asignatura.routes');
 app.use("/api/asignaturas", asignaturaRoutes);
 
 // IMAGES' ROUTES 
-const imageRoutes = require('./routes/image.rotes');
+const imageRoutes = require('./routes/image.routes');
 app.use("/api/image", imageRoutes);
 
 // EVENTOS' ROUTES 
-const eventosRoutes = require('./routes/eventos.rotes');
+const eventosRoutes = require('./routes/eventos.routes');
 app.use("/api/event", eventosRoutes);
 
 
