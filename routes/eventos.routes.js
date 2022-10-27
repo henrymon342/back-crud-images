@@ -93,11 +93,14 @@ router.delete('/delete/:id', (req, res) => {
 
 
 router.post('/findByMinisterio', (req, res) => {
-  db.Eventos.findAll({
-      where: { ministerio: req.body.ministerio }
-  }).then((EventosFound) => {
-      res.send(EventosFound)
-  });
+  const ministerio = req.body;
+  console.log(ministerio);
+  res.send(ministerio)
+  // db.Eventos.findAll({
+  //     where: { ministerio: req.body.ministerio }
+  // }).then((EventosFound) => {
+  //     res.send(EventosFound)
+  // });
 })
 
 
