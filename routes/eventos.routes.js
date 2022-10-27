@@ -102,7 +102,7 @@ router.post('/findByMinisterio', (req, res) => {
   })
   .catch(err => {
     res.status(500).send({
-      message: err.err
+      message: err.message
     });
   });
 })
