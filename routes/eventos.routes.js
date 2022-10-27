@@ -96,13 +96,13 @@ router.post('/findByMinisterio', (req, res) => {
   const ministerio = req.body;
   console.log(ministerio);
   db.Eventos.findAll({
-    where: { ministerio }
+    where: { ministerio: ministerio }
   }).then((EventosFound) => {
         res.send(EventosFound)
   })
   .catch(err => {
     res.status(500).send({
-      message: "Error getting evento"
+      message: err.err
     });
   });
 })
