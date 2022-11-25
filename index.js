@@ -68,6 +68,10 @@ app.use("/api/image", imageRoutes);
 const eventosRoutes = require('./routes/eventos.routes');
 app.use("/api/event", eventosRoutes);
 
+// AUTH' ROUTES 
+const authRoutes = require('./routes/auth.routes');
+app.use("/api/auth", authRoutes);
+
 
 app.post('/api/create',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
