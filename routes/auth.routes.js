@@ -18,10 +18,10 @@ router.post('/signin', async (req, res) => {
     console.log('USUARIO.....', user );
 
     if( !user ) {
-        return res.status(401).send('El username no existe');
+        return res.status(200).send('El username no existe');
     }
     if( user.password != password ){
-        return res.status(401).send('contraseña erronea');  
+        return res.status(200).send('contraseña erronea');  
     } 
 
     const token = jwt.sign({ _id: user.id }, 'secretkey' )  
