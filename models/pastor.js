@@ -33,6 +33,10 @@ module.exports = (sequelize, DataTypes) =>{
         titulos:{
             type: DataTypes.STRING,
             allowNull: true
+        },
+        requisitos:{
+            type: DataTypes.STRING,
+            allowNull: true
         }
         
     });

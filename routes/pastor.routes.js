@@ -3,9 +3,9 @@ const router = express.Router()
 const db = require('../models')
 
 router.post('/new', (req, res) => {
-    const {area, category, lugardeministerio, membresia, name, titulos, year } = req.body
+    const {area, category, lugardeministerio, membresia, name, titulos, year, requisitos } = req.body
     const pas = {
-        area, category, lugardeministerio, membresia, name, titulos, year
+      area, category, lugardeministerio, membresia, name, titulos, year, requisitos
     }
     
     db.Pastor.create(
