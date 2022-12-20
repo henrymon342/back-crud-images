@@ -26,6 +26,11 @@ router.post('/new',  multer.single('image'), async (req, res) => {
       'message': 'File uploaded successfully',
       newImagen
     });
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: err
+    });
   });
 });
 
