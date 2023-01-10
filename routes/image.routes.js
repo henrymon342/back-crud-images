@@ -68,6 +68,12 @@ router.put('/update/:id', multer.single('image'), async (req, res) => {
     where: {idAsosiado: id}
  }).then(async (result) => {
 
+      if( result ){
+        console.log(result, 'IMAGEN EXISTE');
+      }else{
+        console.log(result, 'NO EXISTE IMAGEN');
+      }
+
       // elimina la direccion y la imagen de uploads
       // fs.unlink(path.resolve(result.dataValues.imagePath))
       // ELIMINA LA IMAGEN DEL SERVIDOR DE CLOUDINARY
