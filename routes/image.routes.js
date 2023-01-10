@@ -67,7 +67,7 @@ router.put('/update/:id', multer.single('image'), async (req, res) => {
   await db.Imagen.findOne({
     where: {idAsosiado: id}
  }).then(async (result) => {
-
+      console.log(result);
       if( result ){
         console.log(result, 'IMAGEN EXISTE');
       }else{
