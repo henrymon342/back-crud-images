@@ -68,12 +68,36 @@ router.put('/update/:id', multer.single('image'), async (req, res) => {
     where: {idAsosiado: id}
  }).then(async (result) => {
       console.log(result);
-      if( result ){
-        console.log(result, 'IMAGEN EXISTE');
-      }else{
+      if( !result ){
         console.log(result, 'NO EXISTE IMAGEN');
+        const resultimg = await cloudinary.uploader.upload(impath)
+        const auxImage = { 
+          idAsosiado: id,
+          imagePath: resultimg.secure_url, 
+          cloudinary_id: resultimg.public_id
+        };
+        db.Imagen.update( auxImage,{
+          where: { idAsosiado: id }
+        }).then(num => {
+          if (num == 1) {
+            res.send({
+              message: "Imagen was updated successfully."
+            });
+          } else {
+            res.send({
+              message: `Cannot delete Imagen with id=${id}. Maybe Imagen was not found or req.body is empty!`
+            });
+          }
+        })
+        .catch(err => {
+          res.status(500).send({
+            message: "Error deleting Imagen with id=" + id
+          });
+        });
       }
-
+      else{
+        console.log(result, 'IMAGEN EXISTE');
+        
       // elimina la direccion y la imagen de uploads
       // fs.unlink(path.resolve(result.dataValues.imagePath))
       // ELIMINA LA IMAGEN DEL SERVIDOR DE CLOUDINARY
@@ -103,6 +127,7 @@ router.put('/update/:id', multer.single('image'), async (req, res) => {
           message: "Error deleting Imagen with id=" + id
         });
       });
+    }
   })
   .catch(err => {
     res.status(500).send({
