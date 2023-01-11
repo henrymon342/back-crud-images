@@ -70,7 +70,7 @@ router.put('/update/:id', multer.single('image'), async (req, res) => {
       console.log(result);
       if( !result ){
         console.log(result, 'NO EXISTE IMAGEN');
-        res.send({message: 'NO HAY IMAGEN'})
+        res.send({message: 'NO HAY IMAGEN', result})
       }
       else{
         console.log(result, 'IMAGEN EXISTE');
