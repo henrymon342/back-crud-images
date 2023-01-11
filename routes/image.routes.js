@@ -70,19 +70,6 @@ router.put('/update/:id', multer.single('image'), async (req, res) => {
       console.log(result);
       if( !result ){
         console.log(result, 'NO EXISTE IMAGEN');
-        db.Imagen.findOne({
-          where: { idAsosiado: id }
-        })
-        .then((ImageFound) => {
-          console.log('SE ENCONTRO IMAGEN', ImageFound );
-          if (ImageFound ) {
-              res.send(ImageFound)
-            } else {
-              res.send({
-                message: `Cannot found Imagen with id=${id}`
-              });
-            }
-        })
       }
       else{
         console.log(result, 'IMAGEN EXISTE');
