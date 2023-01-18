@@ -43,6 +43,7 @@ router.get('/find/:id', (req, res) => {
       where: { idAsosiado: id }
   })
   .then((ImageFound) => {
+    console.log('IMAGE FOUND', ImageFound);
     if (ImageFound ) {
         res.send(ImageFound)
       } else {
