@@ -13,6 +13,8 @@ router.post('/new',  multer.single('image'), async (req, res) => {
   console.log( 'path', impath );
   const result = await cloudinary.uploader.upload( impath )
 
+  console.log('RESULT', result);
+
   const newImage = { 
     idAsosiado,
     imagePath: result.secure_url,
