@@ -2,7 +2,8 @@ const express = require('express')
 const router = express.Router()
 const cloudinary = require('../utils/cloudinary');
 const multer  = require('../libs/multer')
-const db = require('../models')
+const db = require('../models');
+const { source } = require('../utils/cloudinary');
 
 
 router.post('/new',  multer.single('image'), async (req, res) => {
@@ -11,10 +12,15 @@ router.post('/new',  multer.single('image'), async (req, res) => {
   console.log('idAsosiado', idAsosiado );
   console.log('req.files', req.file );
   console.log( 'path', impath );
-  const result = await cloudinary.uploader.upload( impath )
+  let result = await cloudinary.uploader.upload( impath )
 
+  
+  if( !result ){
+    // const imageServer = require('fs').readFileSync(__dirname + 'source/user_img.jpg');
+    result = await cloudinary.uploader.upload( '/sources/user_img.jpg' );
+  }
   console.log('RESULT', result);
-
+  
   const newImage = { 
     idAsosiado,
     imagePath: result.secure_url,
