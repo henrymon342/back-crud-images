@@ -1,4 +1,4 @@
-const  express  =  require('express')
+const express  =  require('express')
 const multer  = require('./libs/multer')
 const bodyParser = require("body-parser");
 const cors = require('cors')
@@ -14,14 +14,14 @@ const corsOptions ={
   optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-app.use(bodyParser.json({limit: "12mb", extended: true}));
+app.use(express.json({limit: "12mb", extended: true}))
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   limit: "12mb",
   extended: true,
   parameterLimit: 50000
 }));
-// // fixing "413 Request Entity Too Large" errors
-// app.use(express.json())
+// fixing "413 Request Entity Too Large" errors
 // app.use(express.urlencoded({limit: "12mb", extended: true, parameterLimit: 50000}))
 
 
