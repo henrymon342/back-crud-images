@@ -14,9 +14,9 @@ const corsOptions ={
   optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
-app.use(bodyParser.json({ limit: '12mb' }));
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({
-  limit: "12mb",
+  limit: "10mb",
   extended: true
 }));
 // fixing "413 Request Entity Too Large" errors
