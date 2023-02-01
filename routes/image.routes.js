@@ -12,7 +12,7 @@ router.post('/new',  multer.single('image'), async (req, res) => {
   console.log('idAsosiado', idAsosiado );
   console.log('req.files', req.file );
   console.log( 'path', impath );
-  let result = await cloudinary.v2.uploader.upload( impath, {width: 1280, height: 720, crop: "limit"})
+  let result = await cloudinary.uploader.upload( impath)
 
   
   if( !result ){
