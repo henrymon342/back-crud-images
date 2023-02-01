@@ -17,8 +17,10 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({
   limit: "10mb",
-  extended: true
+  extended: true,
+  parameterLimit: 50000
 }));
+app.use(express.json());
 // fixing "413 Request Entity Too Large" errors
 // app.use(express.urlencoded({limit: "12mb", extended: true, parameterLimit: 50000}))
 
