@@ -77,6 +77,10 @@ app.use("/api/event", eventosRoutes);
 const authRoutes = require('./routes/auth.routes');
 app.use("/api/auth", authRoutes);
 
+// IGLESIAS' ROUTES 
+const iglesiaRoutes = require('./routes/iglesia.routes');
+app.use("/api/iglesias", iglesiaRoutes);
+
 
 app.post('/api/create',  multer.single('image'), async (req, res) => {
   const idAsosiado = req.body['idAsociado'];
