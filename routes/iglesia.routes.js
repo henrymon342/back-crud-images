@@ -14,6 +14,10 @@ router.get('/all', (req, res) => {
     db.Iglesia.findAll({
     }).then((allChurchs) => {
         res.send(allChurchs)
+    }).catch(err => {
+      res.status(500).send({
+        message: "Error getting all Iglesia "
+      });
     });
 })
 
