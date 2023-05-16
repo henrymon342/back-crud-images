@@ -8,27 +8,20 @@ const jwt = require('jsonwebtoken')
 //verifyToken
 
 router.post('/signin', async (req, res) => {
-
     const {username, password } = req.body;
-    
     const user = await db.Administrador.findOne({
         where: { username: username }
     })
-
     console.log('USUARIO.....', user );
-
     if( !user ) {
         return res.status(200).json({message: 'El username no existe'});
     }
     if( user.password != password ){
         return res.status(200).json({message: 'contraseña erronea'});  
     } 
-
     const token = jwt.sign({ _id: user.id }, 'secretkey' )  
-
     return res.status(200).json({ token, username: user.username, type: user.type });
-
-})
+});
 
 
 
