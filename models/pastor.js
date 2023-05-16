@@ -10,6 +10,42 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING,
             allowNull: false
         },
+        direccion:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        celular:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        correo:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        fecha_nac:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        lugar_nac:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        estado_civil:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        nombre_esposa:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        fecha_nac_esposa:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        lugar_nac_esposa:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         category:{
             type: DataTypes.STRING,
             allowNull: false
@@ -37,17 +73,18 @@ module.exports = (sequelize, DataTypes) =>{
         requisitos:{
             type: DataTypes.STRING,
             allowNull: true
+        },
+        data_family:{
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        educacion:{
+            type: DataTypes.STRING,
+            allowNull: true
         }
         
     });
 
-    // Pastor.associate = models => {
-    //     Pastor.hasOne(models.Record, {
-    //         onDelete: 'cascade'
-    //     });
-
-    // }
-
-
     return Pastor;
 }
+
