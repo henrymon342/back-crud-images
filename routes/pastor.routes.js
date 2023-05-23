@@ -20,6 +20,7 @@ router.post('/new', (req, res) => {
       membresia,
       titulos,
       year,
+      dado_en,
       requisitos,
       data_family,
       educacion
@@ -36,6 +37,7 @@ router.post('/new', (req, res) => {
       fecha_nac_esposa,
       lugar_nac_esposa,
       area,
+      dado_en,
       category,
       lugardeministerio,
       membresia,

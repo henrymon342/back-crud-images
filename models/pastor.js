@@ -54,6 +54,10 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING,
             allowNull: false
         },
+        dado_en:{
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         area:{
             type: DataTypes.STRING,
             allowNull: false
