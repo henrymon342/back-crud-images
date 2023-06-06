@@ -170,7 +170,7 @@ router.post('/findByMonth', async (req, res) => {
   arr = await db.Eventos.findAll();
 
   arr.forEach(evento => {
-     const fechaevento = moment(evento.fechaini);
+     const fechaevento = new Date(evento.fechaini);
     if( fechaevento.month() == nromes && gestion == fechaevento.getFullYear() ){
       eventos_parciales.push(evento);
     }
