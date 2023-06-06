@@ -171,7 +171,7 @@ router.post('/findByMonth', async (req, res) => {
 
   arr.forEach(evento => {
      const fechaevento = moment(evento.fechaini);
-    if( fechaevento.month() == nromes && gestion == fechaevento.getFullYear()() ){
+    if( fechaevento.month() == nromes && gestion == fechaevento.getFullYear() ){
       eventos_parciales.push(evento);
     }
     // if( evento.tipofecha == 'VARIOS DÍAS' ){
