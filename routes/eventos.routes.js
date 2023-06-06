@@ -160,7 +160,9 @@ router.post('/findByFecha', async (req, res) => {
 
 router.post('/findByMonth', async (req, res) => {
   const nromes = req.body.nromes;
+  const gestion = req.body.gestion;
   console.log('MES', nromes);
+  console.log('GESTION', gestion);
 
   arr = [];
   // const hoy = moment().format('DD-MM-YYYY');
@@ -168,10 +170,10 @@ router.post('/findByMonth', async (req, res) => {
   arr = await db.Eventos.findAll();
 
   arr.forEach(evento => {
-     const nrofecha = moment(evento.fechaini).month();
+     const fechaevento = moment(evento.fechaini);
     console.log('nroreques -->', nromes);
     console.log('nromesfecha -->', nrofecha);
-    if( nrofecha == nromes ){
+    if( fechaevento.month() == nromes && gestion == fechaevento.getDate() ){
       eventos_parciales.push(evento);
     }
     // if( evento.tipofecha == 'VARIOS DÍAS' ){
