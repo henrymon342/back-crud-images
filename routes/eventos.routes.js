@@ -168,17 +168,25 @@ router.post('/findByMonth', async (req, res) => {
   arr = await db.Eventos.findAll();
 
   arr.forEach(evento => {
-    if( evento.tipofecha == 'VARIOS DÍAS' ){
-
-      if(verVariosDias( evento.fechaini, evento.fechafin, nromes )){
-        eventos_parciales.push(evento)
-      }
-
-    }else{
-      if(verDia( evento.fecha, nromes )){
-        eventos_parciales.push(evento)
-      }
+     const nrofecha = moment(evento.fechaini).month();
+    console.log('nroreques -->', nromes);
+    console.log('nromesfecha -->', nrofecha);
+    if( nrofecha == nromes ){
+      eventos_parciales.push(evento);
     }
+    // if( evento.tipofecha == 'VARIOS DÍAS' ){
+
+      
+
+    //   if(verVariosDias( evento.fechaini, evento.fechafin, nromes )){
+    //     eventos_parciales.push(evento)
+    //   }
+
+    // }else{
+    //   if(verDia( evento.fecha, nromes )){
+    //     eventos_parciales.push(evento)
+    //   }
+    // }
   });
 
   res.send( eventos_parciales )
