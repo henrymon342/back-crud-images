@@ -3,8 +3,7 @@ const router = express.Router()
 const db = require('../models')
 
 const jwt = require('jsonwebtoken');
-const { compare } = require('bcryptjs');
-
+const { compare } = require('../helpers/handlerBcrypt')
 
 //verifyToken
 
