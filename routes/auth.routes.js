@@ -35,7 +35,7 @@ router.post('/signin', async (req, res) => {
       res.send({
         message: 'contraseña erronea'
       })
-      return
+      return  
     }
 
     return res.status(200).json({ token, username: user.username, type: user.type });
