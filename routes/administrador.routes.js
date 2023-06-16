@@ -1,12 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
+const { encrypt, compare } = require('../helpers/handlerBcrypt')
 
-router.post('/new', (req, res) => {
-    db.Administrador.create(
-        req.body
-    ).then((newAdministrador) => {
 
+router.post('/new', async (req, res) => {
+  const {name, lastname, username, password, cargo, type, ministerio, miembroen } = req.body;
+  const passwordHash = await encrypt(password);
+    db.Administrador.create({
+      name, lastname, username, passwordHash, cargo, type, ministerio, miembroen
+    }).then((newAdministrador) => {
       res.send(newAdministrador)
     });
 })

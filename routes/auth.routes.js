@@ -2,13 +2,14 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models')
 
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { compare } = require('bcryptjs');
 
 
 //verifyToken
 
 router.post('/signin', async (req, res) => {
-    const {username, password } = req.body;
+    const { username, password } = req.body;
     const user = await db.Administrador.findOne({
         where: { username: username }
     })
@@ -16,17 +17,29 @@ router.post('/signin', async (req, res) => {
     if( !user ) {
         return res.status(200).json({message: 'El username no existe'});
     }
-    if( user.password != password ){
-        return res.status(200).json({message: 'contraseña erronea'});  
-    } 
+    // if( user.password != password ){
+    //     return res.status(200).json({message: 'contraseña erronea'});  
+    // } 
+
+    const checkPassword = await compare( password, user.password )
     const token = jwt.sign({ _id: user.id }, 'secretkey' )  
+    if( checkPassword ){
+      res.send({
+        token, username: user.username, type: user.type
+      })
+      return
+    }
+
+    if( !checkPassword ){
+      res.status(409)
+      res.send({
+        message: 'contraseña erronea'
+      })
+      return
+    }
+
     return res.status(200).json({ token, username: user.username, type: user.type });
 });
-
-
-
-
-
 
 
 
