@@ -8,7 +8,7 @@ router.post('/new', async (req, res) => {
   const {name, lastname, username, password, cargo, type, ministerio, miembroen } = req.body;
   const passwordHash = await encrypt(password);
     db.Administrador.create({
-      name, lastname, username, passwordHash, cargo, type, ministerio, miembroen
+      name, lastname, username, password: passwordHash, cargo, type, ministerio, miembroen
     }).then((newAdministrador) => {
       res.send(newAdministrador)
     });
