@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../models')
-const { encrypt, compare } = require('../helpers/handlerBcrypt')
+const { encrypt } = require('../helpers/handlerBcrypt')
 
 
 router.post('/new', async (req, res) => {
